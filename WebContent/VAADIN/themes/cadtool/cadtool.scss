@@ -1,0 +1,100 @@
+// Global variable overrides. Must be declared before importing Valo.
+
+// Defines the plaintext font size, weight and family. Font size affects general component sizing.
+//$v-font-size: 16px;
+//$v-font-weight: 300;
+//$v-font-family: "Open Sans", sans-serif;
+
+// Defines the border used by all components.
+//$v-border: 1px solid (v-shade 0.7);
+//$v-border-radius: 4px;
+
+// Affects the color of some component elements, e.g Button, Panel title, etc
+//$v-background-color: hsl(210, 0%, 98%);
+// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
+//$v-app-background-color: $v-background-color;
+
+// Affects the visual appearance of all components
+//$v-gradient: v-linear 8%;
+//$v-bevel-depth: 30%;
+//$v-shadow-opacity: 5%;
+
+// Defines colors for indicating status (focus, success, failure)
+//$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
+//$v-friendly-color: #2c9720;
+//$v-error-indicator-color: #ed473b;
+
+// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
+// Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
+
+@import "../valo/valo.scss";
+
+@mixin cadtool {
+  @include valo;
+
+  // Insert your own theme rules here
+  .v-window {
+  	background: #1f1f1f;
+  	opacity: 0.88 !important;
+  	border: 0px;
+  }
+  
+  .v-window-closebox {
+  	font-size: xx-large !important;
+  	font-weight: bolder;
+  	color: #ff0000;
+  	background: #1f1f1f;
+  }
+  
+  .v-window-header {
+  	text-align: center;
+  	font-size: x-large !important;
+  	font-weight: bolder;
+  	color: #ffffff;
+  	border: 0px;
+  }
+  
+  .v-window .v-button {
+  	font-weight: bolder;
+  	color: #ff0000;
+  	background: #1f1f1f;
+  	border: #ffffff 2px solid;
+  }
+  
+  .v-window .v-horizontal {
+  	border: 0px;
+  	margin-top:2px; 
+	margin-left:0px; 
+	margin-right:0px; 
+	margin-bottom:2px; 
+  }
+  
+  .v-table-header {
+  	font-weight: bolder;
+  	font-size: large !important;
+  	color: #ffffff;
+  	background: #333333;
+  	border: #000000 2px solid;
+  }
+  
+  .v-table-row, .v-table-row-odd {
+    font-weight: bolder;
+  	color: #000000;
+  	background: #ffffff;
+  	border: #000000 2px solid;
+  }
+  
+  .v-table-row:hover, .v-table-row-odd:hover {
+    font-weight: bolder;
+  	color: #dd0000;
+  	background: #eeeeee;
+  	border: #000000 2px solid;
+  }
+  
+  .v-table-row-selected, .v-table-row-odd-selected {
+    font-weight: bolder;
+  	color: #ff0000;
+  	background: #fafafa;
+  	border: #000000 2px solid;
+  }
+}

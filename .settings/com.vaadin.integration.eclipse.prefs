@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+com.vaadin.integration.eclipse.useLatestNightly=false
+com.vaadin.integration.eclipse.widgetsetCompilationEta=38357
+com.vaadin.integration.eclipse.widgetsetDirty=true
+eclipse.preferences.version=1
+=======
+com.vaadin.integration.eclipse.useLatestNightly=false
+com.vaadin.integration.eclipse.widgetsetCompilationEta=99435
+com.vaadin.integration.eclipse.widgetsetDirty=false
+eclipse.preferences.version=1
+>>>>>>> 64b97d196f3a4a04a8a99b2abcf8ffdee9cd86d9
