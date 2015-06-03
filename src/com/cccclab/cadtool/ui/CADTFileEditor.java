@@ -31,7 +31,7 @@ public class CADTFileEditor extends CADTFileEditorDesign {
 
 //		btn_save.addClickListener(CADTEventHandler.buildButtonSaveHandler(btn_save, editor_code, file));
 		btn_cancle.addClickListener(CADTEventHandler.buildButtonCancleHandler(btn_cancle, window));
-		
+		// saving file by FileDownloader
 		StreamResource resource = createResource();
 		FileDownloader fd = new FileDownloader(resource);
 		fd.extend(btn_save);

@@ -99,6 +99,7 @@ public class CADTEventHandler {
 	            		// streamVariable is the content of file
 	            		StreamVariable streamVariable = createStreamVariable(file);
 	            		file.setStreamVariable(streamVariable);
+	            		// add to list
 	            		CADTEventHandler.files.add(file);
 	            	}
 	            	
