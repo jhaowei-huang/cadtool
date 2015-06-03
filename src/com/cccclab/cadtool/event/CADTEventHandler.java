@@ -9,8 +9,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.vaadin.aceeditor.AceEditor;
-
 import com.cccclab.cadtool.ui.CADTFileEditor;
 import com.vaadin.data.Item;
 import com.vaadin.event.Action;
@@ -20,7 +18,6 @@ import com.vaadin.event.dd.DragAndDropEvent;
 import com.vaadin.event.dd.DropHandler;
 import com.vaadin.event.dd.acceptcriteria.AcceptAll;
 import com.vaadin.event.dd.acceptcriteria.AcceptCriterion;
-import com.vaadin.server.FileDownloader;
 import com.vaadin.server.StreamResource;
 import com.vaadin.server.StreamVariable;
 import com.vaadin.server.StreamResource.StreamSource;
@@ -60,6 +57,7 @@ public class CADTEventHandler {
 			@Override
 			public void itemClick(ItemClickEvent event) {
 				Table table = (Table) event.getSource();
+				// double click and open editor window
 				if(event.isDoubleClick()) {
 					Item item = table.getItem(event.getItemId());
 					String fileName = (String) item.getItemProperty("Name").getValue();
@@ -72,6 +70,7 @@ public class CADTEventHandler {
 					}
 					table.refreshRowCache();
 				}
+				// single click and select or deselect item on table
 				else if(event.getButton() == MouseButton.LEFT) {
 					Item item = table.getItem(event.getItemId());
 					CheckBox chk = (CheckBox) item.getItemProperty("Select").getValue();
@@ -81,68 +80,24 @@ public class CADTEventHandler {
 			}
 		};
 	}
-	// drag and drop to the table area
+	// drop file to table area
 	public static DropHandler buildFileDropHandler(Table table) {
 		return new DropHandler() {
 			@Override
 			public void drop(DragAndDropEvent event) {
-				// drop event transfer to Html5File
+				// drop file transfer to Html5File
 				WrapperTransferable transferred = (WrapperTransferable) event.getTransferable();
 				Html5File files[] = transferred.getFiles();
 				
 	            if(files != null) {
 	            	for(final Html5File file : files) {
-	            		// add column property name
+	            		// adding row
 	            		Item row = table.getItem(table.addItem());
 	            		row.getItemProperty("Select").setValue(new CheckBox());
 	            		row.getItemProperty("Name").setValue(file.getFileName());
 	            		row.getItemProperty("Size (bytes)").setValue(String.valueOf(file.getFileSize()));
-	            		
+	            		// streamVariable is the content of file
 	            		StreamVariable streamVariable = createStreamVariable(file);
-	            		/*
-	            		final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-	            		StreamVariable streamVariable = new StreamVariable() {
-
-	            			@Override
-	            			public OutputStream getOutputStream() {
-	            				return outputStream;
-	            			}
-
-	            			@Override
-	            			public boolean listenProgress() {
-	            				return false;
-	            			}
-
-	            			@Override
-	            			public void onProgress(StreamingProgressEvent event) {
-	            			}
-
-	            			@Override
-	            			public void streamingStarted(StreamingStartEvent event) {
-	            			}
-
-	            			@Override
-	            			public void streamingFinished(StreamingEndEvent event) {
-	            				try {
-	            					FileOutputStream fos = new FileOutputStream(REPOSITORY + file.getFileName());
-	                                outputStream.writeTo(fos);
-	                            } 
-	            				catch (IOException e) {
-	            					Notification.show("Streaming finished failed", Type.ERROR_MESSAGE);
-	            				}
-	            			}
-
-	            			@Override
-	            			public void streamingFailed(StreamingErrorEvent event) {
-	            				Notification.show("streaming failed.", Type.ERROR_MESSAGE);
-	            			}
-
-	            			@Override
-	            			public boolean isInterrupted() {
-	            				return false;
-	            			}
-	                    };*/
-	                    // streamVariable is the content of file
 	            		file.setStreamVariable(streamVariable);
 	            		CADTEventHandler.files.add(file);
 	            	}

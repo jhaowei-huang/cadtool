@@ -9,6 +9,7 @@ import com.vaadin.ui.Table.Align;
 
 @SuppressWarnings("serial")
 public class CADTWebPage extends CADTWebPageDesign {
+	// create a DragAndDropWrapper object
 	private final DragAndDropWrapper wrap = new DragAndDropWrapper(tb_files);
 	
 	public CADTWebPage() {
@@ -23,36 +24,20 @@ public class CADTWebPage extends CADTWebPageDesign {
 		tb_files.setColumnAlignment("Select", Align.CENTER);
 		
 		tb_files.addActionHandler(CADTEventHandler.buildContextMenuHandler(tb_files));
+		// table style generator
 		tb_files.setCellStyleGenerator(new Table.CellStyleGenerator() {
 			@Override
 			public String getStyle(Table source, Object itemId, Object propertyId) {
-				
-				if (propertyId == null) {
-					// Styling for row
-					Item item = tb_files.getItem(itemId);
-			        CheckBox chk_select = (CheckBox) item.getItemProperty("Select").getValue();
-			        if(chk_select.getValue()) {
-			        	return "selected";
-			        }
-			        else {
-			        	return null;
-			        }
-			        /*
-			        if (firstName.toLowerCase().startsWith("g")) {
-			        	return "highlight-green";
-			        } 
-			        else if (firstName.contains("o")) {
-			        	return "highlight-red";
-			        } 
-			        else {
-			            return null;
-			        }
-			        */
-			    } 
-				else {
-			          // styling for column propertyId
-			          return null;
-				}
+				// Styling for row
+				Item item = tb_files.getItem(itemId);
+			    CheckBox chk_select = (CheckBox) item.getItemProperty("Select").getValue();
+			    if(chk_select.getValue()) {
+			    	// use style named .v-table-row-selected
+			    	return "selected";
+			    }
+			    else {
+			    	return null;
+			    }
 			}
 		});
 	
@@ -66,6 +51,7 @@ public class CADTWebPage extends CADTWebPageDesign {
 		btn_download.addClickListener(CADTEventHandler.buildButtonDownloadHandler());
 		btn_send.addClickListener(CADTEventHandler.buildButtonDownloadHandler());
 		
+		// add DragAndDropWrapper into page
 		addComponent(wrap);
 		setExpandRatio(wrap, 1.0f);
 	}
