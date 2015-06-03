@@ -1,1 +1,0 @@
-$wnd.com_cccclab_cadtool_widgetset_CadtoolWidgetset.runAsyncCallback2('Fbb(1587,1,ZSd);_.tc=function Wac(){iYb((!bYb&&(bYb=new nYb),bYb),this.a.d)};DMd(Rh)(2);\n//# sourceURL=com.cccclab.cadtool.widgetset.CadtoolWidgetset-2.js\n')
